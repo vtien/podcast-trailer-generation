@@ -6,8 +6,7 @@ class PodcastTranscript(BaseModel):
     text: str
 
 class PredictionOutput(BaseModel):
-    confidence: float
-    text: str
+    introduction: str
 
 app = FastAPI()
 
@@ -20,4 +19,4 @@ async def pred(transcript: PodcastTranscript):
 
     model = PodcastIntroExtractorModel()
     pred = model.predict(transcript.text)
-    return pred
+    return {"introduction": pred['prediction']}

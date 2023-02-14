@@ -85,7 +85,6 @@ class PreprocessPodcastDataset:
 
         tokenized_doc = []
         labels = []
-        # labels = [-100] # assign label -100 to special tokens [CLS] and [SEP] so they're ignored by loss function
         document, document_labels = document_obj['text'], document_obj['labels']
         for word, label in zip(document.split(" "), document_labels):
 
@@ -99,7 +98,6 @@ class PreprocessPodcastDataset:
             # Add the same label to the new list of labels `n_subwords` times
             labels.extend([label] * n_subwords)
 
-         # labels.append(-100)
         return labels
 
     def tokenize_documents(self, dataset: Literal["train", "eval"]):
@@ -119,7 +117,7 @@ class PreprocessPodcastDataset:
             new_label = self._tokenize_and_preserve_labels(data[i])
             new_labels.append(new_label)
 
-        tokenized_inputs = self.tokenizer(document_texts, add_special_tokens=False) # don't include special tokens as they will be added when dataset is chunked
+        tokenized_inputs = self.tokenizer(document_texts, add_special_tokens=False)
         tokenized_inputs['labels'] = new_labels
         return tokenized_inputs
 
@@ -131,7 +129,6 @@ class PodcastDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         item = {key: torch.tensor(val[idx]) for key, val in self.tokenized_dataset.items()}
-        # item['labels'] = torch.tensor(self.labels[idx])
         return item
 
     def __len__(self):

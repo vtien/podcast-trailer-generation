@@ -215,7 +215,7 @@ class PodcastIntroExtractorModel:
         words = self.tokenizer.convert_ids_to_tokens(token_ids)
         prediction = " ".join(words[start_prediction:end_prediction+1])
         confidence = float((start_val + end_val) / 2)
-        return confidence, prediction
+        return confidence, prediction.replace("[PAD]","").replace("[SEP]","").strip()
 
     def predict(self, text: str):
 
