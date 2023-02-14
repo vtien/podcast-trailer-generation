@@ -3,7 +3,7 @@ Task: automatically create podcast trailers from podcast audio / transcript data
 
 ## Instructions:
 1. Pull the docker container for this project by running `docker pull vishaltien/podcast-intro-model:latest`
-2. Run the container using `docker run -d --name app1 -p 80:80 vishaltien/podcast-intro-model`
+2. Run the container using `docker run -d --name app1 -p 80:80 vishaltien/podcast-intro-model:lateset`
 3. Navigate to the docker url and then to the /docs endpoint to test the API
 
 NOTE: Model performance is currently around ~80% accuracy, but final prediction does not always look great. Current hypothesis is that this is due to inference strategy, which was attempted to be replicated from paper. As a result, I also include a more direct inference strategy in the API (prediction_pieces) which extracts the tokens predicted to be in the introduction, as opposed to the most probable introduction span (prediction)
