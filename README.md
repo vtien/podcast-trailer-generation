@@ -38,7 +38,7 @@ Identify the introduction of the podcast and serve that as the first part of the
 
 ## Next steps
 
-* Improve inference strategy
+* Improve inference strategy and evaluate other model architectures (such as models like spanBERT that may be better suited for this task)
 
 * Create more training pairs using augmentation / preprocessing techniques, and / or weak supervision on text summarization tasks in other domains (news article headlines)
 
@@ -49,3 +49,7 @@ Identify the introduction of the podcast and serve that as the first part of the
 * Refactor training code (chunk_train and chunk_info_text function similarly)
 
 * Initialize model and tokenizers (time-intensive steps that can occur prior to prediction) when docker container is spun up, as opposed to when prediction endpoint is hit
+
+## Reflections
+
+In the end, implementing an approach detailed in a paper ended up being more time consuming than expected and possibly a little too involved for the time scope of this project with the other requirements in mind. Looking back, a simpler approach could have left more time for these other components, as well as most significantly, to increase model performance to a satisfactory level. 
