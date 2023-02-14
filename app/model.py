@@ -208,14 +208,21 @@ class PodcastIntroExtractorModel:
             start_probs.append(prob1_sum)
             end_probs.append(prob1_sum_end)            
 
+        mask = torch.argmax(logits, dim=2).flatten().bool()
         start_prediction = np.argmax(start_probs)
         start_val = start_probs[start_prediction]
         end_prediction = np.argmax(end_probs[start_prediction:]) + start_prediction
         end_val = end_probs[end_prediction]
         words = self.tokenizer.convert_ids_to_tokens(token_ids)
-        prediction = " ".join(words[start_prediction:end_prediction+1])
+        pred_tokens = torch.masked_select(token_ids, mask)
+        # get exact token predictions  
+        pred_pieces = " ".join(self.tokenizer.convert_ids_to_tokens(pred_tokens)) \
+                         .replace("[CLS]","").replace("[PAD]","").replace("[SEP]","").strip()    
+        # get continous predicion using k window
+        prediction = " ".join(words[start_prediction:end_prediction+1]) \
+                        .replace("[CLS]","").replace("[PAD]","").replace("[SEP]","").strip() 
         confidence = float((start_val + end_val) / 2)
-        return confidence, prediction.replace("[PAD]","").replace("[SEP]","").strip()
+        return confidence, prediction, pred_pieces
 
     def predict(self, text: str):
 
@@ -233,10 +240,11 @@ class PodcastIntroExtractorModel:
 
             chunk_dataset = {"input_ids": chunked_dataset['input_ids'][i].unsqueeze(0).long(),
                             "attention_mask": chunked_dataset['attention_mask'][i].unsqueeze(0).long()}
-            conf, pred = self._predict(model, chunk_dataset)
+            conf, pred, pred_pieces = self._predict(model, chunk_dataset)
             if conf > max_conf:
                 max_conf = conf
                 best['confidence'] = conf
                 best['prediction'] = pred
+                best['prediction_pieces'] = pred_pieces
 
         return best
