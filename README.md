@@ -6,7 +6,7 @@ Task: automatically create podcast trailers from podcast audio / transcript data
 2. Run the container using `docker run -d --name app1 -p 80:80 vishaltien/podcast-intro-model:latest`
 3. Navigate to the docker url and then to the /docs endpoint to test the API
 
-NOTE: Model performance is currently around ~80% accuracy, but final prediction does not always look great. Current hypothesis is that this is due to inference strategy, which was attempted to be replicated from paper. As a result, I also include a more direct inference strategy in the API (prediction_pieces) which extracts the tokens predicted to be in the introduction, as opposed to the most probable introduction span (prediction)
+NOTE: Model performance is currently around ~80% accuracy, but final prediction does not always look great. Current hypothesis is that this is due to inference strategy, which was attempted to be replicated from paper. As a result, I also include a more direct inference strategy in the API (found in the prediction_pieces field) which extracts the tokens predicted to be in the introduction, as opposed to the most probable introduction span (found in the prediction field)
 
 ## Approach:
 
@@ -45,3 +45,7 @@ Identify the introduction of the podcast and serve that as the first part of the
 * Parallelize prediction pipeline for faster inference since input text is split into chunks of 512 tokens. Currently, predictions are computed for each chunk one at a time. However, each prediction chunk is entirely dependent of the other, so this could be done in parallel and the most confident prediction returned at the end
 
 * Leverege freely available podcast datasets, such as the Spotify Podcast Dataset. Upon looking into getting access to this dataset, I discovered you have to sign a form and then wait up to 2 weeks to be given access. Thus, unfortunately I could not make use of it. Fields of interest for this datset are the podcast description field in addition to the full podcast transcription, which could provide good training pairs for fine-tuning a summarization / description generation model. 
+
+* Refactor training code (chunk_train and chunk_info_text function similarly)
+
+* Initialize model and tokenizers (time-intensive steps that can occur prior to prediction) when docker container is spun up, as opposed to when prediction endpoint is hit
