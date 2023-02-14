@@ -31,9 +31,10 @@ I decided to tackle the first of these components. Given more time, I would have
 Identify the introduction of the podcast and serve that as the first part of the trailer. Then, use emotion speech recongition to pinpoint highlights of the episode to serve after this as "example snippets of interest from podcast". In this repo, I only tackle the first component of this approach.
 
 ## Resources
-Task | Approach | Resource | Resource Link | Status
-Introduce your show | Extract introduction span from transcript | Jing et. al., 2021 | https://arxiv.org/pdf/2110.07096.pdf | Complete
-Share the highlights | Speech emotion recognition | Wagner et. al., 2022 | https://arxiv.org/pdf/2203.07378v2.pdf | Planned (not completed)
+| Task | Approach | Resource | Resource Link | Status |
+| ---- | -------- | -------- | ------------- | ------ |
+| Introduce your show | Extract introduction span from transcript | Jing et. al., 2021 | https://arxiv.org/pdf/2110.07096.pdf | Complete |
+| Share the highlights | Speech emotion recognition | Wagner et. al., 2022 | https://arxiv.org/pdf/2203.07378v2.pdf | Planned (not completed) |
 
 ## Next steps
 
