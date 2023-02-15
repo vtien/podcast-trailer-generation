@@ -6,7 +6,7 @@ Task: automatically create podcast trailers from podcast audio / transcript data
 2. Run the container using `docker run -d --name app1 -p 80:80 vishaltien/podcast-intro-model:latest`
 3. Navigate to the docker url and then to the /docs endpoint to test the API
 
-NOTE: Model performance is currently around ~80% accuracy, but final prediction does not always look great. Current hypothesis is that this is due to inference strategy, which was attempted to be replicated from paper. As a result, I also include a more direct inference strategy in the API (found in the prediction_pieces field) which extracts the tokens predicted to be in the introduction, as opposed to the most probable introduction span (found in the prediction field)
+NOTE: Model performance is currently around ~80% accuracy at the token level, but final prediction does not always look great. Current hypothesis is that this is due to inference strategy, which was attempted to be replicated from paper. As a result, I also include a more direct inference strategy in the API (found in the prediction_pieces field) which extracts the tokens predicted to be in the introduction, as opposed to the most probable introduction span (found in the prediction field)
 
 ## Approach:
 
@@ -52,4 +52,4 @@ Identify the introduction of the podcast and serve that as the first part of the
 
 ## Reflections
 
-In the end, implementing an approach detailed in a paper ended up being more time consuming than expected and possibly a little too involved for the time scope of this project with the other requirements in mind. Looking back, a simpler approach could have left more time for these other components, as well as most significantly, to increase model performance to a satisfactory level. 
+In the end, implementing an approach detailed in a paper ended up being more time consuming than expected and possibly a little too involved for the time scope of this project with the other requirements in mind. Looking back, a simpler approach could have left more time for these other components, as well as most significantly, to increase model performance to a more satisfactory level. 
