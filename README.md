@@ -52,4 +52,4 @@ Identify the introduction of the podcast and serve that as the first part of the
 
 ## Reflections
 
-In the end, implementing an approach detailed in a paper ended up being more time consuming than expected and possibly a little too involved for the time scope of this project with the other requirements in mind. Looking back, a simpler approach could have left more time for these other components, as well as most significantly, to increase model performance to a more satisfactory level. 
+In the end, implementing an approach detailed in a paper ended up being more time consuming than expected and possibly a little too involved for the time scope of this project with the other requirements in mind. Looking back, a simpler approach could have left more time for these other components, as well as most significantly, to increase model performance to a more satisfactory level. Specifically, I believe classification at the token level adversely affected final model outputs, and the task could have been made it easier by transforming it into a sentence level classification problem. 
