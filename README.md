@@ -10,7 +10,7 @@ NOTE: Model performance is currently around ~80% accuracy at the token level, bu
 
 ## Approach:
 
-My first step in this project was to research what makes a great podcast trailer, at this would provide the goal that my solution should make progress towards achieving. At the following webpage my apple, I found the outline for a podcast trailer below:
+My first step in this project was to research what makes a great podcast trailer, at this would provide the goal that my solution should make progress towards achieving. At the following webpage by apple, I found the outline for a podcast trailer below:
 
 1. Introduce your show.
 Start off by introducing your show and hosts to let people know what and who they’re listening to. Then provide a brief explanation of what your show is about. If you need inspiration, think back to the tagline you wrote while developing how to present your podcast. 
